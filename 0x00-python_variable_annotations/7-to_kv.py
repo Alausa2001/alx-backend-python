@@ -10,6 +10,6 @@ and should be annotated as a float.
 from typing import Union, Tuple
 
 
-def to_kv(k: str, v: Union[int, float]) -> Tuple[int, float]:
+def to_kv(k: str, v: Union[int, float]) -> Tuple[str, float]:
     """takes a string and int/tuple and returns their tuple"""
     return (k, v**2)
