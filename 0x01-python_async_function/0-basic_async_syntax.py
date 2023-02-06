@@ -11,6 +11,7 @@ from asyncio import sleep
 
 
 async def wait_random(max_delay: int = 10) -> float:
+    """waits for a random time"""
     r = random.uniform(0, max_delay)
     await sleep(r)
     return r
