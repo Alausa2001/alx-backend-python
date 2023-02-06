@@ -7,11 +7,14 @@ and eventually returns it.
 Use the random module.
 """
 import random
-from asyncio import sleep
+import asyncio
 
 
 async def wait_random(max_delay: int = 10) -> float:
-    """waits for a random time"""
-    r = random.uniform(0, max_delay)
-    await sleep(r)
-    return r
+    """waits for a random time
+    args: max_delay = represent the max time the function can
+    delay for
+    """
+    delay_time = random.uniform(0, max_delay)
+    await asyncio.sleep(delay_time)
+    return delay_time 
