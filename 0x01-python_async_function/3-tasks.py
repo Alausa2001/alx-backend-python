@@ -11,6 +11,6 @@ wait_random = __import__('0-basic_async_syntax').wait_random
 
 def task_wait_random(max_delay: int) -> Task:
     """returns a task object"""
-    task: Task = create_task(wait_random(max_delay))
+    task = create_task(wait_random(max_delay))
     return task
 
