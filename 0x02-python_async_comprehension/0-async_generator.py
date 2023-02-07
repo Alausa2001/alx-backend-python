@@ -10,7 +10,7 @@ from typing import Generator
 from asyncio import sleep
 
 
-async def async_generator() -> Generator[int, None, None]:
+async def async_generator() -> Generator[float, None, None]:
     """
     The coroutine will loop 10 times, each time asynchronously wait 1 second
     then yield a random number between 0 and 10. Use the random module
