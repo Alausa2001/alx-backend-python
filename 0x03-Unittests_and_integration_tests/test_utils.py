@@ -19,3 +19,12 @@ class TestAccessNestedMap(unittest.TestCase):
     def test_access_nested_map(self, paramA, paramB, out):
         """tests the function in utils.py"""
         self.assertEqual(access_nested_map(paramA, paramB), out)
+
+    @parameterized.expand([
+        ({}, ("a",)),
+        ({"a": 1}, ("a", "b"))
+        ])
+    def test_access_nested_map_exception(self, paramA, paramB):
+        """test for if an exception is raised"""
+        with self.assertRaises(KeyError):
+            access_nested_map(paramA, paramB)
