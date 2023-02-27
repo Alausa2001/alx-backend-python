@@ -79,3 +79,15 @@ class TestGithubOrgClient(unittest.TestCase):
         test = GithubOrgClient('test')
         result = test.has_license(repo, license)
         self.assertEqual(result, expected)
+
+
+class TestIntegrationGithubOrgClient(unittest.TestCase):
+    """
+    Integration test
+    """
+
+
+
+
+
+
