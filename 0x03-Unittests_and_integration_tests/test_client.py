@@ -2,12 +2,14 @@
 """
 contain tests for class/methods in client.py
 """
+import requests
 import unittest
 from unittest.mock import MagicMock, patch, PropertyMock
-from parameterized import parameterized
+from parameterized import parameterized, parameterized_class
 # from utils import get_json, access_nested_map, memoize
 from client import GithubOrgClient
 import client
+from fixtures import TEST_PAYLOAD
 
 
 class TestGithubOrgClient(unittest.TestCase):
@@ -81,13 +83,29 @@ class TestGithubOrgClient(unittest.TestCase):
         self.assertEqual(result, expected)
 
 
+@parameterized_class(
+        (org_payload, repos_payload, expected_repos, apache2_repos),
+        TEST_PAYLOAD
+        )
 class TestIntegrationGithubOrgClient(unittest.TestCase):
     """
     Integration test
     """
+    @classmethod
+    def setUpClass():
+        """
+        mocks request.get
+        """
+        config = {'return_value.json.side_effect': [cls.org_payload,
+                                                    cls.repos_payload,
+                                                    cls.expected_repos,
+                                                    cls.apache2_repos]}
+        cls.get_patcher = patch('requests.get', **config)
+        req_mock = cls.get_patcher.start()
 
-
-
-
-
-
+    @classmethod
+    def tearDownClass():
+        """
+        stops patch
+        """
+        cls.get_patcher.stop()
